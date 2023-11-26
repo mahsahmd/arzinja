@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, ReactNode } from "react";
 import { AccordionTitle, Content } from "./styles";
 
-const Accordion = ({ children, title }) => {
+interface AccordionProps {
+  children: ReactNode;
+  title: string;
+}
+const Accordion = ({ children, title }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>

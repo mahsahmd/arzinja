@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Apis } from "./apis";
+import { Apis } from "../constants/apis";
 
 const ProductService = () => axios.get(Apis.products).then((res) => res.data);
 

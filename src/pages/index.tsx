@@ -1,9 +1,11 @@
 import Accordion from "@/components/accordion";
 import Tab from "@/components/tab";
-import { useProductsService } from "@/services/use-products-service";
-import React, { useEffect, useState } from "react";
+// import { useProductsService } from "@/services/use-products-service";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import MyMap from "@/components/map";
+import { Products } from "@/constants/mockData";
+import ProductsTab from "@/components/products";
 
 const customStyles = {
   content: {
@@ -21,10 +23,7 @@ const Home = () => {
   const tabItems = [{ name: "Categories" }, { name: "Active Orders" }];
   const [activeTab, setActiveTab] = useState("Categories");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+
   const handleOnTabClick = (value: string) => {
     setActiveTab(value);
   };
@@ -32,7 +31,8 @@ const Home = () => {
     setModalIsOpen(false);
     setActiveTab(`Active Orders`);
   };
-  const { data, isLoading } = useProductsService();
+  // const { data, isLoading } = useProductsService();
+  const data = Products;
   return (
     <div>
       {tabItems.map((item) => (
@@ -44,22 +44,10 @@ const Home = () => {
         />
       ))}
       {activeTab === "Categories" && (
-        <>
-          {data?.categories.map((item) => {
-            return (
-              <Accordion key={item.name} title={item.name}>
-                {item.products.map((product) => {
-                  return (
-                    <>
-                      <p key={item.name}>{product.name}</p>
-                      <button onClick={() => setModalIsOpen(true)}>buy</button>
-                    </>
-                  );
-                })}
-              </Accordion>
-            );
-          })}
-        </>
+        <ProductsTab
+          data={data?.categories}
+          onProductClick={() => setModalIsOpen(true)}
+        />
       )}
       <Modal
         style={customStyles}
