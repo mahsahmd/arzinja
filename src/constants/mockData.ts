@@ -1,4 +1,7 @@
-export const Products = {
+import { Orders } from "@/components/active-orders/activeOrders.types";
+import { Categories } from "@/components/products/products.types";
+
+export const Products: Categories = {
   categories: [
     {
       id: 1,
@@ -31,6 +34,23 @@ export const Products = {
           price: 39.99,
         },
       ],
+    },
+  ],
+};
+
+export const OrdersData: Orders = {
+  orders: [
+    {
+      id: 1,
+      product: "item 1",
+      amount: 1,
+      status: "in-proccess",
+    },
+    {
+      id: 2,
+      product: "item 2",
+      amount: 1,
+      status: "pending",
     },
   ],
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import Accordion from "../accordion";
 import { Category } from "./products.types";
+import { BuyButton, ProductItem, ProductName, ProductsWrapper } from "./styles";
 
 interface ProductsProps {
   data: Category[];
@@ -12,14 +13,16 @@ const ProductsTab = ({ data, onProductClick }: ProductsProps) => {
       {data?.map((item) => {
         return (
           <Accordion key={item.name} title={item.name}>
-            {item.products.map((product) => {
-              return (
-                <>
-                  <p key={item.name}>{product.name}</p>
-                  <button onClick={onProductClick}>buy</button>
-                </>
-              );
-            })}
+            <ProductsWrapper>
+              {item.products.map((product) => {
+                return (
+                  <ProductItem key={item.name}>
+                    <ProductName>{product.name}</ProductName>
+                    <BuyButton onClick={onProductClick}>buy</BuyButton>
+                  </ProductItem>
+                );
+              })}
+            </ProductsWrapper>
           </Accordion>
         );
       })}

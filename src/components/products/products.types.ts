@@ -9,3 +9,7 @@ interface Product {
   name: string;
   price: number;
 }
+
+export interface Categories {
+  categories: Category[];
+}

@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 export const AccordionTitle = styled.p`
   color: #333;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
 `;
 
@@ -21,7 +21,7 @@ const animation = keyframes`
 `;
 
 export const Content = styled.div<ContentProps>`
-  height: ${(props) => (props.show ? "auto" : "0")};
-  display: ${(props) => (props.show ? "block" : "none")};
-  /* animation: ${animation} 0.5s ease-in-out; */
+  max-height: ${(props) => (props.show ? "300px" : "0")};
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
 `;

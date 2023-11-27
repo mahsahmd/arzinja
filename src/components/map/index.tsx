@@ -1,20 +1,40 @@
 import React, { useState } from "react";
-import { Map, Draggable } from "pigeon-maps";
+import { Map, Marker, Overlay } from "pigeon-maps";
+import { MapModalContent, MapWrapper, SelectLocationButton } from "./styles";
 
 interface MyMapProps {
   onSubmit: () => void;
 }
+
 const MyMap = ({ onSubmit }: MyMapProps) => {
-  const [anchor, setAnchor] = useState<[number, number]>([50.879, 4.6997]);
+  const [markerPosition, setMarkerPositionr] = useState<[number, number]>([
+    35.740314, 51.351689,
+  ]);
+  interface handleMapChangeProps {
+    latLng: [number, number];
+  }
+  const handleMapChange = ({ latLng }: handleMapChangeProps) => {
+    setMarkerPositionr(latLng);
+  };
   return (
-    <>
-      <Map height={300} defaultCenter={[50.879, 4.6997]} defaultZoom={11}>
-        <Draggable offset={[60, 87]} anchor={anchor} onDragEnd={setAnchor}>
-          <p>test</p>
-        </Draggable>
-      </Map>
-      <button onClick={onSubmit}>click</button>
-    </>
+    <MapModalContent>
+      <MapWrapper>
+        <Map
+          onClick={handleMapChange}
+          center={[35.740314, 51.35168]}
+          zoom={15}
+          // width={400}
+          // height={400}
+        >
+          <Marker anchor={markerPosition} payload={1} />
+
+          <Overlay anchor={[35.740314, 51.35168]} offset={[120, 79]}></Overlay>
+        </Map>
+      </MapWrapper>
+      <SelectLocationButton onClick={onSubmit}>
+        Choose Location
+      </SelectLocationButton>
+    </MapModalContent>
   );
 };
 
