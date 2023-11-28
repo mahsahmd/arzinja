@@ -7,16 +7,16 @@ import {
   OrderName,
 } from "./styles";
 import Status from "./Status";
-// import { useOrderService } from "@/services/use-order-service";
-import { OrdersData } from "@/constants/mockData";
+import { Order } from "./activeOrders.types";
 
-const ActiveOrders = () => {
-  // const { data } = useOrderService();
-  const data = OrdersData;
+interface ActiveOrders {
+  orders: Order[] | null;
+}
+const ActiveOrders = ({ orders }: ActiveOrders) => {
   return (
     <ActiveOrdersTab>
       <ActiveOrdersList>
-        {data?.orders?.map((order) => (
+        {orders?.map((order) => (
           <ActiveOrdersItem key={order.id}>
             <ActiveOrdersTitle>Product</ActiveOrdersTitle>
             <ActiveOrdersTitle>Amount</ActiveOrdersTitle>

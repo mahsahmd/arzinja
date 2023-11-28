@@ -5,11 +5,12 @@ import { Products } from "@/constants/mockData";
 import ProductsTab from "@/components/products";
 import ActiveOrders from "@/components/active-orders";
 import { HomePage, TabsWrapper } from "@/styles/homepage.styled";
+import UseOrders from "@/hooks/useOrders";
 
 const Home = () => {
   const tabItems = [{ name: "Categories" }, { name: "Active Orders" }];
   const [activeTab, setActiveTab] = useState("Categories");
-
+  const { orders } = UseOrders();
   const handleOnTabClick = (value: string) => {
     setActiveTab(value);
   };
@@ -17,6 +18,7 @@ const Home = () => {
     setActiveTab(`Active Orders`);
   };
   // const { data, isLoading } = useProductsService();
+
   const data = Products;
   return (
     <HomePage>
@@ -37,7 +39,7 @@ const Home = () => {
           onSubmitLocation={onSubmitLocation}
         />
       )}
-      {activeTab === "Active Orders" && <ActiveOrders />}
+      {activeTab === "Active Orders" && <ActiveOrders orders={orders} />}
     </HomePage>
   );
 };
