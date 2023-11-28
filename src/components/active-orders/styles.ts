@@ -10,18 +10,25 @@ export const ActiveOrdersList = styled.div`
 `;
 
 export const ActiveOrdersItem = styled.div`
-  display: flex;
-  gap: 16px;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #e7e7eb;
   padding: 16px 8px;
-  border-radius: 5px;
+  border-radius: 8px;
   align-items: center;
+  background-color: #f7f7fa;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 `;
 
-export const OrderName = styled.p`
-  color: #404040;
+export const ActiveOrdersTitle = styled.div`
+  color: #9499be;
   font-size: 14px;
-  font-weight: normal;
+  font-weight: 600;
+`;
+export const OrderName = styled.p`
+  color: #5e617d;
+  font-size: 12px;
+  font-weight: 600;
   margin: 0;
 `;
 
@@ -45,4 +52,6 @@ export const OrderStatus = styled.p<OrderStatusProps>`
   margin: 0;
   border-radius: 5px;
   padding: 4px;
+  max-width: 80px;
+  text-align: center;
 `;

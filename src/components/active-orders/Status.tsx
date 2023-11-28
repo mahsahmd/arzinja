@@ -23,7 +23,7 @@ const Status = memo(({ status }: StatusProps) => {
     if (orderStatus !== "delivered") {
       const intervalId = setInterval(() => {
         setOrderStatus((prevStatus) => getNextOrderStatus(prevStatus));
-      }, 3000);
+      }, 30000);
       return () => clearInterval(intervalId);
     }
   }, [orderStatus]);

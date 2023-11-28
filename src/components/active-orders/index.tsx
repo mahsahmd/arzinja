@@ -3,6 +3,7 @@ import {
   ActiveOrdersItem,
   ActiveOrdersList,
   ActiveOrdersTab,
+  ActiveOrdersTitle,
   OrderName,
 } from "./styles";
 import Status from "./Status";
@@ -17,7 +18,11 @@ const ActiveOrders = () => {
       <ActiveOrdersList>
         {data?.orders?.map((order) => (
           <ActiveOrdersItem key={order.id}>
+            <ActiveOrdersTitle>Product</ActiveOrdersTitle>
+            <ActiveOrdersTitle>Amount</ActiveOrdersTitle>
+            <ActiveOrdersTitle>Status</ActiveOrdersTitle>
             <OrderName>{order.product}</OrderName>
+            <OrderName>{order.amount}</OrderName>
             <Status status={order.status}></Status>
           </ActiveOrdersItem>
         ))}

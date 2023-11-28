@@ -4,7 +4,7 @@ export const ProductsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-left: 24px;
+  padding: 8px 0 8px 24px;
 `;
 export const ProductItem = styled.div`
   display: flex;
@@ -30,3 +30,15 @@ export const BuyButton = styled.button`
     background-color: #1976d2cf;
   }
 `;
+
+export const modalCustomStyles = {
+  content: {
+    width: "400px",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};

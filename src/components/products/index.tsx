@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "../accordion";
 import { Category } from "./products.types";
-import { BuyButton, ProductItem, ProductName, ProductsWrapper } from "./styles";
+import {
+  BuyButton,
+  ProductItem,
+  ProductName,
+  ProductsWrapper,
+  modalCustomStyles,
+} from "./styles";
+import Modal from "react-modal";
+import MyMap from "@/components/map";
 
 interface ProductsProps {
   data: Category[];
-  onProductClick: () => void;
+  onSubmitLocation: () => void;
 }
-const ProductsTab = ({ data, onProductClick }: ProductsProps) => {
+const ProductsTab = ({ data, onSubmitLocation }: ProductsProps) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const onSubmit = () => {
+    onSubmitLocation();
+    setModalIsOpen(false);
+  };
   return (
     <div>
       {data?.map((item) => {
@@ -18,7 +31,9 @@ const ProductsTab = ({ data, onProductClick }: ProductsProps) => {
                 return (
                   <ProductItem key={item.name}>
                     <ProductName>{product.name}</ProductName>
-                    <BuyButton onClick={onProductClick}>buy</BuyButton>
+                    <BuyButton onClick={() => setModalIsOpen(true)}>
+                      Buy
+                    </BuyButton>
                   </ProductItem>
                 );
               })}
@@ -26,6 +41,14 @@ const ProductsTab = ({ data, onProductClick }: ProductsProps) => {
           </Accordion>
         );
       })}
+      <Modal
+        style={modalCustomStyles}
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Choose Location"
+      >
+        <MyMap onSubmit={onSubmit} />
+      </Modal>
     </div>
   );
 };
